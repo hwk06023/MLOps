@@ -1,0 +1,21 @@
+# Key-value pairs
+apiVersion: v1 # kubernetes resource's API version
+kind: Pod # type of resource
+metadata: # metadata for the Pod
+  name: pod
+  labels:
+    hello: world
+  spec: # specification of the desired behavior of the Pod
+    containers:
+    # list
+    - name: busybox
+      image: busybox:1.28
+      ports:
+      - containerPort: 80
+    # list
+    - name: nginx
+      image: nginx:1.15
+      ports:
+      - containerPort: 80
+    - name: another-container
+      image: curlimages/curl

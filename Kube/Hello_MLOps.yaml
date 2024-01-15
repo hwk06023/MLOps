@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-mlops
+  spec:
+    containers:
+    - name: hello-mlops
+      image: hello-mlops:latest
+      ports:
+      - containerPort: 80
+    - name: mlflow
+      image: mlflow:latest
+      ports:
+      - containerPort: 5000

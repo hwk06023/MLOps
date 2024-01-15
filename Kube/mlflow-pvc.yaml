@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mlflow-pvc
+spec: # pvc spec
+    accessModes:
+        - ReadWriteOnce # ReadWriteOnce, ReadOnlyMany, ReadWriteMany supported
+    volumeMode: Filesystem
+    resources:
+        requests:
+          storage: 1Gi # storage size
+    storageClassName: standard
