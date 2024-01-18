@@ -4,7 +4,7 @@
 
 ### DevOps
 
-<img src="readme/DevOps.png" width="400">
+<img src="Img_readme/DevOps.png" width="400">
 
 Plan -> Code -> Build -> Test -> Release -> Deploy -> Operate -> Monitor -> Plan ... <br/>
 
@@ -90,12 +90,13 @@ RUN apt-get update
 CMD ["echo", "Hello MLOps!"]
 ```
 
+<br/><br/>
 
 ## Kubernetes - Container Orchestration
 
 check [Official Docs](https://kubernetes.io/docs/home/) <br/>
 
-<img src="readme/comp-of-kubernetes.png" width="600" >
+<img src="Img_readme/comp-of-kubernetes.png" width="600" >
 
 Kubernetes is an open-source container-orchestration system for automating computer application deployment, scaling, and management. <br/> <br/>
 
@@ -230,6 +231,68 @@ NAME         STATUS   VOLUME                                     CAPACITY   ACCE
 mlflow-pvc   Bound    pvc-0b0b8b8b-8b8b-0b0b-8b8b-0b0b8b8b0b0b   1Gi        RWO            standard       2m
 ```
 
-<br/><br/><br/>
+<br/><br/>
+
+## DVC - Data Version Control
+
+check [Official Docs](https://dvc.org/doc) <br/>
+
+DVC is an open-source version control system ( like Git ) for machine learning projects. <br/>
+
+```bash
+$ pip3 install dvc
+$ git init
+$ dvc init
+$ git add .dvc .dvcignore
+$ git commit -m "Initialize DVC" # Initialize DVC
+```
+
+```bash
+$ dvc remote add -d storage s3://mlops-dvc-storage # add remote storage
+$ git add .dvc/config
+$ git commit -m "add remote storage"
+$ dvc push
+```
+
+```bash
+$ rm -rf .dvc/cache/ # remove cache
+$ rm -rf data/demo.txt # remove data
+$ dvc pull  # pull data from remote storage
+```
+
+```bash
+$ dvc add data/demo.txt # update data
+$ git add data/.gitignore data/demo.txt.dvc 
+$ git commit -m "add data" 
+$ dvc push # push data to remote storage
+```
+
+### with python
+
+**Link :** https://dvc.org/doc/api-reference
+
+```python
+import dvc.api
+
+with dvc.api.open(
+        'data/demo.txt',
+        repo='
+        mlops-dvc-storage',
+        rev='v1'
+        ) as f:
+    data = f.read()
+```
+
+<br/><br/>
 
 ## MLflow - ML Lifecycle Management
+
+check [Official Docs](https://www.mlflow.org/docs/latest/index.html) <br/>
+
+
+
+
+
+## Kubeflow - ML Toolkit for Kubernetes
+
+check [Official Docs](https://www.kubeflow.org/docs/)
